@@ -2,20 +2,24 @@ package com.thato.schoolmanagement.schoolmanagement.services;
 
 import com.thato.schoolmanagement.schoolmanagement.entity.Assignment;
 import com.thato.schoolmanagement.schoolmanagement.entity.Learner;
-import com.thato.schoolmanagement.schoolmanagement.entity.Grade;
 import com.thato.schoolmanagement.schoolmanagement.repository.AssignmentRepository;
 import com.thato.schoolmanagement.schoolmanagement.repository.LearnerRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class AssignmentService {
 
     private final AssignmentRepository assignmentRepository;
     private final LearnerRepository learnerRepository;
+
+    // Manual Constructor Injection
+    public AssignmentService(AssignmentRepository assignmentRepository,
+                             LearnerRepository learnerRepository) {
+        this.assignmentRepository = assignmentRepository;
+        this.learnerRepository = learnerRepository;
+    }
 
     public List<Assignment> getAssignmentsForLearner(Long learnerId) {
 
@@ -31,4 +35,3 @@ public class AssignmentService {
         return assignmentRepository.save(assignment);
     }
 }
-
