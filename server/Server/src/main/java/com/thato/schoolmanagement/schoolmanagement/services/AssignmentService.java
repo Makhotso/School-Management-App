@@ -24,7 +24,9 @@ public class AssignmentService {
     public List<Assignment> getAssignmentsForLearner(Long learnerId) {
 
         Learner learner = learnerRepository.findById(learnerId)
-                .orElseThrow(() -> new RuntimeException("Learner not found"));
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Learner not found with id: " + learnerId)
+                );
 
         Long gradeId = learner.getGrade().getId();
 
