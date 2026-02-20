@@ -1,29 +1,32 @@
 package com.thato.schoolmanagement.schoolmanagement.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Learner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // database-generated ID
+    private Long id;
 
     @Column(unique = true, nullable = false)
-    private String birthId; // national/birth ID
+    private String birthId;
 
     private String fullName;
 
-    @ManyToOne
-    @JoinColumn(name = "grade_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "grade_id", nullable = false)
+    @JsonIgnoreProperties({"learners","assignments"})
     private Grade grade;
 
-    private Integer rollNumber; // sequential number per grade
+    private Integer rollNumber; // auto-calculated
 
     public Learner() {}
 
     // Getters & Setters
     public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getBirthId() { return birthId; }
     public void setBirthId(String birthId) { this.birthId = birthId; }

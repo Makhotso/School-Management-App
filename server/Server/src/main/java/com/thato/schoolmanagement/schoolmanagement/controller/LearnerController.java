@@ -22,44 +22,44 @@ public class LearnerController {
         this.assignmentService = assignmentService;
     }
 
-    // ✅ CREATE learner
-    @PostMapping
+    //  CREATE learner
+    @PostMapping("/add")
     public Learner createLearner(@RequestBody Learner learner) {
         return learnerService.createLearner(learner);
     }
 
-    // ✅ GET all learners
-    @GetMapping
+    //  GET all learners
+    @GetMapping("/all")
     public List<Learner> getAllLearners() {
         return learnerService.getAllLearners();
     }
 
-    // ✅ GET learner by ID
+    //  GET learner by ID
     @GetMapping("/{id}")
     public Learner getLearnerById(@PathVariable Long id) {
         return learnerService.getLearnerById(id);
     }
 
-    // ✅ UPDATE learner
+    //  UPDATE learner
     @PutMapping("/{id}")
     public Learner updateLearner(@PathVariable Long id,
                                  @RequestBody Learner learner) {
         return learnerService.updateLearner(id, learner);
     }
 
-    // ✅ DELETE learner (with rollNumber reorder)
+    //  DELETE learner (with rollNumber reorder)
     @DeleteMapping("/{id}")
     public void deleteLearner(@PathVariable Long id) {
         learnerService.deleteLearner(id);
     }
 
-    // ✅ GET assignments for learner
+    //  GET assignments for learner
     @GetMapping("/{learnerId}/assignments")
     public List<Assignment> getAssignments(@PathVariable Long learnerId) {
         return assignmentService.getAssignmentsForLearner(learnerId);
     }
 
-    // ✅ GET learners by grade
+    //  GET learners by grade
     @GetMapping("/grade/{gradeId}")
     public List<Learner> getLearnersByGrade(@PathVariable Long gradeId) {
         return learnerService.getLearnersByGrade(gradeId);

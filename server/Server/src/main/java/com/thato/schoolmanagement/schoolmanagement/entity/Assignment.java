@@ -1,6 +1,7 @@
 package com.thato.schoolmanagement.schoolmanagement.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Assignment {
@@ -12,28 +13,31 @@ public class Assignment {
     private String title;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "teacher_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "teacher_id", nullable = false)
+    @JsonIgnoreProperties("assignments")
     private Teacher teacher;
 
-    @ManyToOne
-    @JoinColumn(name = "grade_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "grade_id", nullable = false)
+    @JsonIgnoreProperties({"learners","assignments"})
     private Grade grade;
 
-    // Required by JPA
     public Assignment() {}
 
-    // Getters
+    // Getters & Setters
     public Long getId() { return id; }
-    public String getTitle() { return title; }
-    public String getDescription() { return description; }
-    public Teacher getTeacher() { return teacher; }
-    public Grade getGrade() { return grade; }
-
-    // Setters
     public void setId(Long id) { this.id = id; }
+
+    public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
+
+    public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+
+    public Teacher getTeacher() { return teacher; }
     public void setTeacher(Teacher teacher) { this.teacher = teacher; }
+
+    public Grade getGrade() { return grade; }
     public void setGrade(Grade grade) { this.grade = grade; }
 }

@@ -1,10 +1,11 @@
 package com.thato.schoolmanagement.schoolmanagement.services;
 
-import com.thato.schoolmanagement.schoolmanagement.entity.Grade;
 import com.thato.schoolmanagement.schoolmanagement.entity.Learner;
-import com.thato.schoolmanagement.schoolmanagement.repository.GradeRepository;
+import com.thato.schoolmanagement.schoolmanagement.entity.Grade;
 import com.thato.schoolmanagement.schoolmanagement.repository.LearnerRepository;
+import com.thato.schoolmanagement.schoolmanagement.repository.GradeRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,83 +15,78 @@ public class LearnerService {
     private final LearnerRepository learnerRepository;
     private final GradeRepository gradeRepository;
 
-    public LearnerService(LearnerRepository learnerRepository,
-                          GradeRepository gradeRepository) {
+    public LearnerService(LearnerRepository learnerRepository, GradeRepository gradeRepository) {
         this.learnerRepository = learnerRepository;
         this.gradeRepository = gradeRepository;
     }
 
-    // CREATE LEARNER
+    // CREATE learner with auto roll number
+    @Transactional
     public Learner createLearner(Learner learner) {
         Grade grade = gradeRepository.findById(learner.getGrade().getId())
                 .orElseThrow(() -> new RuntimeException("Grade not found"));
-
-        Integer maxRoll = learnerRepository.findMaxRollNumberByGrade(grade.getId());
-        int nextRoll = (maxRoll == null) ? 1 : maxRoll + 1;
-
         learner.setGrade(grade);
-        learner.setRollNumber(nextRoll);
+
+        // Auto roll number
+        List<Learner> learnersInGrade = learnerRepository.findByGradeIdOrderByRollNumberAsc(grade.getId());
+        int lastRoll = learnersInGrade.stream()
+                .map(Learner::getRollNumber)
+                .max(Integer::compare)
+                .orElse(0);
+        learner.setRollNumber(lastRoll + 1);
 
         return learnerRepository.save(learner);
     }
 
-    // GET ALL LEARNERS
+    // GET all learners
     public List<Learner> getAllLearners() {
         return learnerRepository.findAll();
     }
 
-    // GET LEARNER BY ID
+    // GET learner by ID
     public Learner getLearnerById(Long id) {
         return learnerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Learner not found"));
     }
 
-    // UPDATE LEARNER
+    // UPDATE learner
+    @Transactional
     public Learner updateLearner(Long id, Learner updatedLearner) {
-        Learner existing = learnerRepository.findById(id)
+        Learner learner = learnerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Learner not found"));
 
-        existing.setFullName(updatedLearner.getFullName());
-        existing.setBirthId(updatedLearner.getBirthId());
+        learner.setFullName(updatedLearner.getFullName());
+        learner.setBirthId(updatedLearner.getBirthId());
 
-        // If grade changed → reassign roll number
-        if (!existing.getGrade().getId().equals(updatedLearner.getGrade().getId())) {
-            Grade newGrade = gradeRepository.findById(updatedLearner.getGrade().getId())
+        // Update grade if changed
+        if (updatedLearner.getGrade() != null) {
+            Grade grade = gradeRepository.findById(updatedLearner.getGrade().getId())
                     .orElseThrow(() -> new RuntimeException("Grade not found"));
-
-            Integer maxRoll = learnerRepository.findMaxRollNumberByGrade(newGrade.getId());
-            int nextRoll = (maxRoll == null) ? 1 : maxRoll + 1;
-
-            existing.setGrade(newGrade);
-            existing.setRollNumber(nextRoll);
+            learner.setGrade(grade);
         }
 
-        return learnerRepository.save(existing);
+        return learnerRepository.save(learner);
     }
 
-    // DELETE LEARNER + REORDER ROLL NUMBERS
+    // DELETE learner and reorder roll numbers
+    @Transactional
     public void deleteLearner(Long id) {
         Learner learner = learnerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Learner not found"));
 
-        Grade grade = learner.getGrade();
         learnerRepository.delete(learner);
 
-        List<Learner> learnersInGrade =
-                learnerRepository.findByGradeOrderByRollNumberAsc(grade);
-
+        // Reorder roll numbers in grade
+        List<Learner> learnersInGrade = learnerRepository.findByGradeIdOrderByRollNumberAsc(learner.getGrade().getId());
         int roll = 1;
         for (Learner l : learnersInGrade) {
             l.setRollNumber(roll++);
+            learnerRepository.save(l);
         }
-
-        learnerRepository.saveAll(learnersInGrade);
     }
 
-    //  GET LEARNERS BY GRADE
+    // GET learners by grade
     public List<Learner> getLearnersByGrade(Long gradeId) {
-        Grade grade = gradeRepository.findById(gradeId)
-                .orElseThrow(() -> new RuntimeException("Grade not found"));
-        return learnerRepository.findByGradeOrderByRollNumberAsc(grade);
+        return learnerRepository.findByGradeIdOrderByRollNumberAsc(gradeId);
     }
 }
