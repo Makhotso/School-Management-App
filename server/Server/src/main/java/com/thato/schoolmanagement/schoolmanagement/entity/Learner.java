@@ -1,9 +1,12 @@
 package com.thato.schoolmanagement.schoolmanagement.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@Table(name = "learners")
 public class Learner {
 
     @Id

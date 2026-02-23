@@ -1,8 +1,10 @@
 package com.thato.schoolmanagement.schoolmanagement.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 
 @Entity
+@Table (name = "teachers")
 public class Teacher {
 
     @Id
