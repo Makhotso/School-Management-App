@@ -3,11 +3,13 @@ package com.thato.schoolmanagement.schoolmanagement.controller;
 import com.thato.schoolmanagement.schoolmanagement.entity.Grade;
 import com.thato.schoolmanagement.schoolmanagement.repository.GradeRepository;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/grades")
+@RequestMapping("/api/grades")
+@CrossOrigin(origins = "http://localhost:3000")  // this is what connects to React frontend
 public class GradeController {
 
     private final GradeRepository gradeRepository;
@@ -16,12 +18,12 @@ public class GradeController {
         this.gradeRepository = gradeRepository;
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public Grade createGrade(@RequestBody Grade grade) {
         return gradeRepository.save(grade);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Grade> getAllGrades() {
         return gradeRepository.findAll();
     }

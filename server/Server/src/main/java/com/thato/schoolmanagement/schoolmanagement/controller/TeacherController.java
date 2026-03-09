@@ -3,11 +3,13 @@ package com.thato.schoolmanagement.schoolmanagement.controller;
 import com.thato.schoolmanagement.schoolmanagement.entity.Teacher;
 import com.thato.schoolmanagement.schoolmanagement.repository.TeacherRepository;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/teachers")
+@RequestMapping("/api/teachers")
+@CrossOrigin(origins = "http://localhost:3000")  // this is what connects to React frontend
 public class TeacherController {
 
     private final TeacherRepository teacherRepository;

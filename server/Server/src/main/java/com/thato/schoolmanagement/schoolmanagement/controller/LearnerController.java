@@ -6,11 +6,13 @@ import com.thato.schoolmanagement.schoolmanagement.services.AssignmentService;
 import com.thato.schoolmanagement.schoolmanagement.services.LearnerService;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/learners")
+@RequestMapping("/api/learners")
+@CrossOrigin(origins = "http://localhost:3000")  // this is what connects to React frontend
 public class LearnerController {
 
     private final LearnerService learnerService;
