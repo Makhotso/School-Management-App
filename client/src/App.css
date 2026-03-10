@@ -1,0 +1,125 @@
+/* App.css */
+
+/* ==================== APP BASE ==================== */
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* ==================== HEADER ==================== */
+header {
+  width: 100%;
+  background-color: #004080;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #61dafb;
+}
+
+/* ==================== FOOTER ==================== */
+footer {
+  width: 100%;
+  background-color: #282c34;
+  color: white;
+  padding: 1rem 2rem;
+  position: relative;
+  bottom: 0;
+  text-align: center;
+}
+
+/* ==================== LOADER ==================== */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #004080;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ==================== DASHBOARD ==================== */
+.dashboard {
+  padding: 2rem;
+  min-height: 70vh;
+  text-align: left;
+}
+
+.dashboard h2 {
+  color: #004080;
+  margin-bottom: 1rem;
+}
+
+.dashboard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dashboard li {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ccc;
+}
+
+/* ==================== MAIN CONTENT ==================== */
+main {
+  padding: 2rem;
+  min-height: 70vh;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,60 @@
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 20px;
+}
+
+.home-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #343a40;
+  text-align: center;
+}
+
+.portal-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+}
+
+.portal-card {
+  flex: 1 1 250px;
+  max-width: 300px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 30px 20px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.portal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.portal-card h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #007bff;
+}
+
+.portal-card p {
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.portal-card i {
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: #007bff;
+}
