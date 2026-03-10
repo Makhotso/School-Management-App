@@ -6,23 +6,27 @@ const AdminDashboard = () => {
   const [learners, setLearners] = useState([]);
   const [teachers, setTeachers] = useState([]);
   const [grades, setGrades] = useState([]);
+  const [assignments, setAssignments] = useState([]); // <-- new state
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Fetch data from backend DTO endpoints
         const learnersRes = await axios.get("http://localhost:8080/api/learners/all");
         const teachersRes = await axios.get("http://localhost:8080/api/teachers/all");
         const gradesRes = await axios.get("http://localhost:8080/api/grades/all");
+        const assignmentsRes = await axios.get("http://localhost:8080/api/assignments/all"); // <-- fetch assignments
 
         setLearners(learnersRes.data);
         setTeachers(teachersRes.data);
         setGrades(gradesRes.data);
+        setAssignments(assignmentsRes.data); // <-- set assignments
         setLoading(false);
       } catch (err) {
         console.error(err);
-        setError("Failed to fetch data");
+        setError("Failed to fetch data from server");
         setLoading(false);
       }
     };
@@ -30,25 +34,81 @@ const AdminDashboard = () => {
     fetchData();
   }, []);
 
-  if (loading) return <DashboardLayout><p>Loading data...</p></DashboardLayout>;
-  if (error) return <DashboardLayout><p style={{color: "red"}}>{error}</p></DashboardLayout>;
+  if (loading)
+    return (
+      <DashboardLayout>
+        <p>Loading data...</p>
+      </DashboardLayout>
+    );
+
+  if (error)
+    return (
+      <DashboardLayout>
+        <p style={{ color: "red" }}>{error}</p>
+      </DashboardLayout>
+    );
+
+  // Helper function to get grade name by ID
+  const getGradeName = (gradeId) => {
+    const grade = grades.find((g) => g.id === gradeId);
+    return grade ? grade.name : "N/A";
+  };
+
+  // Helper function to get teacher name by ID
+  const getTeacherName = (teacherId) => {
+    const teacher = teachers.find((t) => t.id === teacherId);
+    return teacher ? teacher.fullName : "N/A";
+  };
 
   return (
     <DashboardLayout>
       <h2 className="dashboard-title">Admin Dashboard</h2>
 
       <div className="dashboard-cards">
+        {/* Learners Card */}
         <div className="dashboard-card learners">
-          <h3>Learners</h3>
-          <p>{learners.length}</p>
+          <h3>Learners ({learners.length})</h3>
+          <ul>
+            {learners.map((l) => (
+              <li key={l.id}>
+                {l.fullName} - Grade: {getGradeName(l.gradeId)}
+              </li>
+            ))}
+          </ul>
         </div>
+
+        {/* Teachers Card */}
         <div className="dashboard-card teachers">
-          <h3>Teachers</h3>
-          <p>{teachers.length}</p>
+          <h3>Teachers ({teachers.length})</h3>
+          <ul>
+            {teachers.map((t) => (
+              <li key={t.id}>
+                {t.fullName} ({t.email})
+              </li>
+            ))}
+          </ul>
         </div>
+
+        {/* Grades Card */}
         <div className="dashboard-card grades">
-          <h3>Grades</h3>
-          <p>{grades.length}</p>
+          <h3>Grades ({grades.length})</h3>
+          <ul>
+            {grades.map((g) => (
+              <li key={g.id}>{g.name}</li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Assignments Card */}
+        <div className="dashboard-card assignments">
+          <h3>Assignments ({assignments.length})</h3>
+          <ul>
+            {assignments.map((a) => (
+              <li key={a.id}>
+                {a.title} - Grade: {getGradeName(a.gradeId)} - Assigned by: {getTeacherName(a.teacherId)}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </DashboardLayout>
