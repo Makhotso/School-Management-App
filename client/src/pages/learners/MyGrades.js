@@ -1,4 +1,3 @@
-// src/pages/student/MyGrades.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -10,7 +9,7 @@ const MyGrades = () => {
     const fetchGrades = async () => {
       try {
         const response = await axios.get("http://localhost:8080/api/learners/1/grades");
-        // Example response:
+        // Example:
         // [{subject: "Mathematics", assessment: "Test 1", mark: 78}, ...]
         setGrades(response.data);
         setLoading(false);

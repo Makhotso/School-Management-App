@@ -1,7 +1,6 @@
-// src/pages/student/StudentLayout.jsx
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-// src/pages/learners/LearnerLayout.jsx
+
 import MyDashboard from "./MyDashboard";
 import MyAssignments from "./MyAssignments";
 import MySubjects from "./MySubjects";

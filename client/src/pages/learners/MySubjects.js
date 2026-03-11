@@ -1,4 +1,3 @@
-// src/pages/student/MySubjects.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -9,7 +8,7 @@ const MySubjects = () => {
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
-        // Replace with your backend API endpoint
+        // My backend API endpoint
         const response = await axios.get("http://localhost:8080/api/learners/1/subjects");
         // Example response: ["Mathematics", "English", "Physical Sciences"]
         setSubjects(response.data);
