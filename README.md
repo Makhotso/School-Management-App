@@ -1,4 +1,4 @@
-Table of Contents
+## Table of Contents
 1.	Project Overview
 2.	Architecture
 3.	Screenshots
@@ -23,6 +23,8 @@ Description:
 •	Apache Kafka handles event-driven communication (e.g., assignment notifications)
 
 ## Screenshots
+
+<img width="1187" height="468" alt="Home Interface" src="https://github.com/user-attachments/assets/8a8a3307-e75c-45b6-95fd-53b31767c0f7" />
 
 ## Fetaures 
 
