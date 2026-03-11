@@ -4,7 +4,7 @@
 
 # This system allows administrators and teachers to manage academic data efficiently through a modern web interface connected to a RESTful backend.
 
-## Technology Stack**
+## Technology Stack
 
 # Java: 17
 
