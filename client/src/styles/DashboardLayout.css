@@ -1,46 +1,105 @@
+/* Dashboard Container */
 .dashboard-container {
   display: flex;
   min-height: 100vh;
-  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8; /* light background */
 }
 
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: #1e3a8a; /* dark blue */
+  color: #ffffff;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h3 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 1rem;
+}
+
+/* Sidebar Links */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 1rem;
+}
+
+.sidebar li a {
+  color: #cbd5e1; /* lighter blue */
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  display: block;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.sidebar li a:hover {
+  background-color: #3b82f6; /* bright blue on hover */
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Active link style */
+.sidebar li a.active {
+  background-color: #2563eb; /* medium blue */
+  color: #ffffff;
+}
+
+/* Main Dashboard Content */
 .dashboard-content {
   flex: 1;
-  padding: 30px;
+  padding: 2rem;
+  background-color: #f0f4f8;
 }
 
-.dashboard-title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 25px;
-}
-
+/* Cards inside dashboard content */
 .dashboard-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
 }
 
 .dashboard-card {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  text-align: center;
-  transition: transform 0.2s;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .dashboard-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .dashboard-card h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+  color: #1e3a8a; /* dark blue title */
 }
 
-.dashboard-card p {
-  font-size: 24px;
-  font-weight: bold;
-  color: #007bff;
+.dashboard-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-card li {
+  padding: 0.25rem 0;
+  border-bottom: 1px solid #e2e8f0; /* light gray divider */
+  font-size: 0.95rem;
+}
+
+.dashboard-card li:last-child {
+  border-bottom: none;
 }
