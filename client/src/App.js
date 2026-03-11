@@ -1,6 +1,8 @@
 // src/App.js
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import TeacherRoutes from "./routes/TeacherRoutes";
+import AdminRoutes from "./routes/AdminRoutes";
 
 import Loader from "./components/Loader";
 import Footer from "./components/Footer";
@@ -38,31 +40,24 @@ function App() {
 
   return (
     <>
-      <Routes>
+     <Routes>
 
-        {/* Home */}
-        <Route path="/" element={<Home />} />
+             {/* Home */}
+             <Route path="/" element={<Home />} />
 
-        {/* ---------------- ADMIN ---------------- */}
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/admin/learners" element={<AdminLearners />} />
-        <Route path="/admin/teachers" element={<AdminTeachers />} />
-        <Route path="/admin/grades" element={<AdminGrades />} />
-        <Route path="/admin/assignments" element={<AdminAssignments />} />
+             {/* Admin */}
+             <Route path="/admin/*" element={<AdminRoutes />} />
 
-        {/* ---------------- LEARNER ---------------- */}
-        <Route path="/learners/dashboard" element={<MyDashboard />} />
-        <Route path="/learners/subjects" element={<MySubjects />} />
-        <Route path="/learners/grades" element={<MyGrades />} />
-        <Route path="/learners/assignments" element={<MyAssignments />} />
+             {/* Teacher */}
+             <Route path="/teachers/*" element={<TeacherRoutes />} />
 
-        {/* ---------------- TEACHER ---------------- */}
-        <Route path="/teachers/dashboard" element={<TeacherDashboard />} />
-        <Route path="/teachers/assign" element={<AssignAssignments />} />
-        <Route path="/teachers/marks" element={<CaptureMarks />} />
-        <Route path="/teachers/classes" element={<TeacherClasses />} />
+             {/* Learner */}
+             <Route path="/learners/dashboard" element={<MyDashboard />} />
+             <Route path="/learners/subjects" element={<MySubjects />} />
+             <Route path="/learners/grades" element={<MyGrades />} />
+             <Route path="/learners/assignments" element={<MyAssignments />} />
 
-      </Routes>
+           </Routes>
 
       <Footer />
     </>
