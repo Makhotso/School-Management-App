@@ -1,26 +1,26 @@
-**Project Overview**
+## Project Overview
 
-The School Management App is a full-stack web application designed to manage core school operations such as learners, teachers, grades, and assignments.
+# The School Management App is a full-stack web application designed to manage core school operations such as learners, teachers, grades, and assignments.
 
-This system allows administrators and teachers to manage academic data efficiently through a modern web interface connected to a RESTful backend.
+# This system allows administrators and teachers to manage academic data efficiently through a modern web interface connected to a RESTful backend.
 
-**Technology Stack**
+## Technology Stack**
 
-*Java: 17
+# Java: 17
 
-*Spring Boot: 3.2.3
+# Spring Boot: 3.2.3
 
-*Spring Web
+# Spring Web
 
-*Spring Data JPA
+# Spring Data JPA
 
-*Hibernate
+# Hibernate
 
-*Maven
+# Maven
 
-*PostgreSQL
+# PostgreSQL
 
-**Frontend**
+## Frontend
 
 -Built with React
 
@@ -28,7 +28,7 @@ This system allows administrators and teachers to manage academic data efficient
 
 -Communicates with backend via REST APIs
 
-🔹 Backend
+## Backend
 
 -Built with Spring Boot
 
@@ -40,13 +40,13 @@ This system allows administrators and teachers to manage academic data efficient
 
 - Uses Apache Kafka for asynchronous messaging between services
 
-🔹 Database
+## Database
 
 -PostgreSQL
 
 Stores learners, teachers, grades, assignments
 
-**Technologies Used Backend**
+## Technologies Used Backend
 
 -Java 17
 
@@ -62,7 +62,7 @@ Stores learners, teachers, grades, assignments
 
 -PostgreSQL
 
-**Frontend**
+## rontend
 
 -React
 
@@ -74,7 +74,7 @@ Stores learners, teachers, grades, assignments
 
 -JavaScript
 
-**Tools**
+## Tools
 
 -IntelliJ IDEA
 
@@ -82,7 +82,7 @@ Stores learners, teachers, grades, assignments
 
 -Postman (API testing)
 
-**Core Entities**
+## Core Entities
 
 The system currently supports:
 
@@ -94,7 +94,7 @@ The system currently supports:
 
 -Assignment
 
-**Future enhancements may include:**
+## Future enhancements may include:
 
 -Subject
 
