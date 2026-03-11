@@ -1,24 +1,24 @@
 ## Project Overview
 
-# The School Management App is a full-stack web application designed to manage core school operations such as learners, teachers, grades, and assignments.
+ The School Management App is a full-stack web application designed to manage core school operations such as learners, teachers, grades, and assignments.
 
-# This system allows administrators and teachers to manage academic data efficiently through a modern web interface connected to a RESTful backend.
+ This system allows administrators and teachers to manage academic data efficiently through a modern web interface connected to a RESTful backend.
 
 ## Technology Stack
 
-# Java: 17
+- Java: 17
 
-# Spring Boot: 3.2.3
+- Spring Boot: 3.2.3
 
-# Spring Web
+- Spring Web
 
-# Spring Data JPA
+- Spring Data JPA
 
-# Hibernate
+- Hibernate
 
-# Maven
+- Maven
 
-# PostgreSQL
+- PostgreSQL
 
 ## Frontend
 
