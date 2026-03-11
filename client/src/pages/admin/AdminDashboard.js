@@ -60,59 +60,67 @@ const AdminDashboard = () => {
     return teacher ? teacher.fullName : "N/A";
   };
 
-  return (
-    <DashboardLayout>
-      <h2 className="dashboard-title">Admin Dashboard</h2>
+ return (
+   <DashboardLayout>
+     <h2 className="dashboard-title">Admin Dashboard</h2>
 
-      <div className="dashboard-cards">
-        {/* Learners Card */}
-        <div className="dashboard-card learners">
-          <h3>Learners ({learners.length})</h3>
-          <ul>
-            {learners.map((l) => (
-              <li key={l.id}>
-                {l.fullName} - Grade: {getGradeName(l.gradeId)}
-              </li>
-            ))}
-          </ul>
-        </div>
+     {/* ===== ANALYTICS CARDS ===== */}
+     <div className="dashboard-cards">
 
-        {/* Teachers Card */}
-        <div className="dashboard-card teachers">
-          <h3>Teachers ({teachers.length})</h3>
-          <ul>
-            {teachers.map((t) => (
-              <li key={t.id}>
-                {t.fullName} ({t.email})
-              </li>
-            ))}
-          </ul>
-        </div>
+       <div className="dashboard-card learners">
+         <h5>Total Learners</h5>
+         <div className="stat-number">{learners.length}</div>
+       </div>
 
-        {/* Grades Card */}
-        <div className="dashboard-card grades">
-          <h3>Grades ({grades.length})</h3>
-          <ul>
-            {grades.map((g) => (
-              <li key={g.id}>{g.name}</li>
-            ))}
-          </ul>
-        </div>
+       <div className="dashboard-card teachers">
+         <h5>Total Teachers</h5>
+         <div className="stat-number">{teachers.length}</div>
+       </div>
 
-        {/* Assignments Card */}
-        <div className="dashboard-card assignments">
-          <h3>Assignments ({assignments.length})</h3>
-          <ul>
-            {assignments.map((a) => (
-              <li key={a.id}>
-                {a.title} - Grade: {getGradeName(a.gradeId)} - Assigned by: {getTeacherName(a.teacherId)}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </DashboardLayout>
-  );
+       <div className="dashboard-card grades">
+         <h5>Total Grades</h5>
+         <div className="stat-number">{grades.length}</div>
+       </div>
+
+       <div className="dashboard-card assignments">
+         <h5>Total Assignments</h5>
+         <div className="stat-number">{assignments.length}</div>
+       </div>
+
+     </div>
+
+     {/* ===== RECENT ACTIVITY ===== */}
+
+     <div className="dashboard-section">
+
+       {/* Recent Assignments */}
+       <div className="recent-card">
+         <h3>Recent Assignments</h3>
+         <ul>
+           {assignments.slice(0,5).map((a) => (
+             <li key={a.id}>
+               {a.title} — {getGradeName(a.gradeId)}
+             </li>
+           ))}
+         </ul>
+       </div>
+
+       {/* New Learners */}
+       <div className="recent-card">
+         <h3>Newest Learners</h3>
+         <ul>
+           {learners.slice(0,5).map((l) => (
+             <li key={l.id}>
+               {l.fullName} — {getGradeName(l.gradeId)}
+             </li>
+           ))}
+         </ul>
+       </div>
+
+     </div>
+
+   </DashboardLayout>
+ );
 };
 
 export default AdminDashboard;
