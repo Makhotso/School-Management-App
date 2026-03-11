@@ -6,9 +6,9 @@ This system allows administrators and teachers to manage academic data efficient
 
 **Technology Stack**
 
-*Java: 25
+*Java: 17
 
-*Spring Boot: 4.0.2
+*Spring Boot: 3.2.3
 
 *Spring Web
 
@@ -36,7 +36,9 @@ This system allows administrators and teachers to manage academic data efficient
 
 -Exposes RESTful APIs
 
--Connects to MySQL database
+-Connects to PostgreSQL database
+
+- Uses Apache Kafka for asynchronous messaging between services
 
 🔹 Database
 
@@ -46,7 +48,7 @@ Stores learners, teachers, grades, assignments
 
 **Technologies Used Backend**
 
--Java 17+
+-Java 17
 
 -Spring Boot
 
