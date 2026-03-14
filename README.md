@@ -96,8 +96,7 @@ Stores learners, teachers, grades, assignments
 
 ## Setup Instructions
 
-1.	Clone the repository
-git clone https://github.com/your-username/school-management-system.git](https://github.com/Makhotso/School-Management-App.git
+1.	Clone the repository https://github.com/Makhotso/School-Management-App.git
 cd school-management-system
 2.	Frontend setup
 cd client
