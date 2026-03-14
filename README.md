@@ -112,7 +112,7 @@ Access the backend API at: http://localhost:8080
 •	Install PostgreSQL
 •	Create a database school_db
 •	Update application.properties with your database credentials
-5.	Kafka setup (optional for event-driven features)
+5.	Kafka setup
 •	Install Apache Kafka
 •	Start Zookeeper and Kafka server
 •	Update Spring Boot properties to point to Kafka brokers
