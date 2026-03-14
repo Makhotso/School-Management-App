@@ -125,8 +125,8 @@ docker build -t school-frontend ./client
 2.	Run containers
 docker run -p 8080:8080 school-backend
 docker run -p 3000:3000 school-frontend
-3.	Optional: Run Kafka with Docker Compose
-version: '3.8'
+3.	Run Kafka with Docker Compose
+version: '3.1.3'
 services:
   zookeeper:
     image: wurstmeister/zookeeper:3.4.6
